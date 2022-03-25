@@ -6,7 +6,7 @@ import { loadBooksDispatch, postBookDispatch, updateBookDispatch, deleteBookDisp
 import { connect } from 'react-redux'
 // import { useDispatch, useSelector } from 'react-redux'
 
-function Home({ books, loadBooksDispatch, postBookDispatch, book, updateBookDispatch, deleteBookDispatch }) {
+function Home({ books, loadBooksDispatch, postBookDispatch, updateBookDispatch, deleteBookDispatch }) {
   const [message, setMessage] = useState();
   const [conditionSumbit, setConditionSumbit] = useState(true);
 
@@ -92,7 +92,7 @@ function Home({ books, loadBooksDispatch, postBookDispatch, book, updateBookDisp
             <form onSubmit={hanleSubmit}>
               <div className="mb-2">
                 <label className="mb-1 block">ID Buku</label>
-                {book == null ?
+                {conditionSumbit ?
                   <input className="block outline-lime-500 border-2 border-lime-200 rounded p-1 w-full xl:w-96" type="number" name="id" onChange={handleValue} value={formData.id} required autoComplete='off' /> :
                   <input disabled className="block outline-lime-500 border-2 border-lime-200 rounded p-1 w-full xl:w-96" type="number" name="id" onChange={handleValue} value={formData.id} required autoComplete='off' />
                 }
