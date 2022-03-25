@@ -7,15 +7,6 @@ export const loadBooksDispatch = (books) => {
   }
 }
 
-export const getBookDispatch = (idBook) => {
-  return {
-    type: actionType.GET_BOOK,
-    payload: {
-      id: Number(idBook),
-    }
-  }
-}
-
 export const updateBookDispatch = (id, value) => {
   return {
     type: actionType.UPDATE_BOOK,
@@ -23,12 +14,6 @@ export const updateBookDispatch = (id, value) => {
       id: Number(id),
       value,
     }
-  }
-}
-
-export const removeGetBookDispatch = () => {
-  return {
-    type: actionType.REMOVE_GET_BOOK,
   }
 }
 

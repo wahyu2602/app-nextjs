@@ -1,13 +1,14 @@
 import Navbar from '../components/navbar/_navbar';
 import IndexHead from '../components/head/head';
 import { useEffect, useState } from 'react';
-import { postBooks, getBooks, updateBook, deleteBook } from '../config/services/books';
-import { loadBooksDispatch, postBookDispatch, updateBookDispatch, removeGetBookDispatch, deleteBookDispatch, getBookDispatch } from '../config/redux/dispatch'
+import { getBooks, postBooks, updateBook, deleteBook } from '../config/services/books';
+import { loadBooksDispatch, postBookDispatch, updateBookDispatch, deleteBookDispatch } from '../config/redux/dispatch'
 import { connect } from 'react-redux'
 // import { useDispatch, useSelector } from 'react-redux'
 
-function Home({ books, loadBooksDispatch, postBookDispatch, book, updateBookDispatch, removeGetBookDispatch, deleteBookDispatch, getBookDispatch }) {
+function Home({ books, loadBooksDispatch, postBookDispatch, book, updateBookDispatch, deleteBookDispatch }) {
   const [message, setMessage] = useState();
+  const [conditionSumbit, setConditionSumbit] = useState(true);
 
   useEffect(() => {
     getBooks()
@@ -40,7 +41,7 @@ function Home({ books, loadBooksDispatch, postBookDispatch, book, updateBookDisp
 
   const hanleSubmit = (e) => {
     e.preventDefault();
-    if (book === null) {
+    if (conditionSumbit) {
       postBooks(formData)
         .then((res) => {
           setMessage(res.message)
@@ -48,12 +49,12 @@ function Home({ books, loadBooksDispatch, postBookDispatch, book, updateBookDisp
           resetValue();
         })
     } else {
-      updateBook(book.id, formData)
+      updateBook(formData.id, formData)
         .then((res) => {
-          updateBookDispatch(book.id, formData);
+          updateBookDispatch(formData.id, formData);
           setMessage(res.message)
           resetValue();
-          removeGetBookDispatch();
+          setConditionSumbit(true);
         })
     }
   }
@@ -68,14 +69,15 @@ function Home({ books, loadBooksDispatch, postBookDispatch, book, updateBookDisp
   }
 
   const handleUpdate = (e) => {
+    setConditionSumbit(false);
     const id = e.target.id;
     const dataBook = books.find((book) => book.id == id)
-    getBookDispatch(id)
     setFormData({
       id: dataBook.id,
       title: dataBook.title,
       author: dataBook.author
     })
+
   }
 
   return (
@@ -136,7 +138,6 @@ function Home({ books, loadBooksDispatch, postBookDispatch, book, updateBookDisp
 const mapStateToProps = (state) => {
   return {
     books: state.books,
-    book: state.book
   }
 }
 
@@ -145,9 +146,7 @@ const mapDispatchToProps = (dispatch) => {
     loadBooksDispatch: (books) => dispatch(loadBooksDispatch(books)),
     postBookDispatch: (value) => dispatch(postBookDispatch(value)),
     updateBookDispatch: (id, value) => dispatch(updateBookDispatch(id, value)),
-    removeGetBookDispatch: () => dispatch(removeGetBookDispatch()),
     deleteBookDispatch: (idBook) => dispatch(deleteBookDispatch(idBook)),
-    getBookDispatch: (idBook) => dispatch(getBookDispatch(idBook))
   }
 }
 
