@@ -26,17 +26,19 @@ export async function updateBook(id, data) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
-  })
+  });
 
   return response.json();
 }
 
 export async function deleteBook(id) {
-  await fetch(`https://books-api.dicoding.dev/delete/${id}`, {
+  const response = await fetch(`https://books-api.dicoding.dev/delete/${id}`, {
     method: 'DELETE',
     headers: {
       "X-Auth-Token": 12345,
       "Content-Type": "application/json"
     }
-  })
+  });
+
+  return response.json();
 }

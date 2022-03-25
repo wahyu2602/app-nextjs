@@ -62,6 +62,9 @@ function Home({ books, loadBooksDispatch, postBookDispatch, book, updateBookDisp
     const id = e.target.id;
     deleteBookDispatch(id);
     deleteBook(id)
+      .then((res) => {
+        setMessage(res.message);
+      })
   }
 
   const handleUpdate = (e) => {
@@ -73,7 +76,6 @@ function Home({ books, loadBooksDispatch, postBookDispatch, book, updateBookDisp
       title: dataBook.title,
       author: dataBook.author
     })
-
   }
 
   return (
