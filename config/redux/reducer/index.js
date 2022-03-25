@@ -23,6 +23,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         book: state.books.find(book => book.id === action.payload.id)
       }
+    case actionType.UPDATE_BOOK:
+      const dataBooks = state.books.find(book => book.id == action.payload.id ? true : false)
+      return {
+        ...state,
+        books: dataBooks ? state.books.map(book => book.id === action.payload.id ? { ...action.payload.value, id: action.payload.id } : book) : state.books
+      }
     case actionType.REMOVE_GET_BOOK:
       return {
         ...state,

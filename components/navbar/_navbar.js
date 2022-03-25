@@ -7,7 +7,7 @@ export default function Navbar() {
         <div className="text-white text-3xl font-bold">
           Belajar NextJS
         </div>
-        <div className="text-white ml-auto">
+        {/* <div className="text-white ml-auto">
           <ul className="hidden lg:flex xl:flex 2xl:flex justify-items-end">
             <li className="ml-3 bg-gray-900 py-2 px-3 rounded hover:bg-gray-700">
               <Link href="/" >
@@ -30,7 +30,7 @@ export default function Navbar() {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </nav>
   )

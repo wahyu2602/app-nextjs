@@ -16,6 +16,16 @@ export const getBookDispatch = (idBook) => {
   }
 }
 
+export const updateBookDispatch = (id, value) => {
+  return {
+    type: actionType.UPDATE_BOOK,
+    payload: {
+      id: Number(id),
+      value,
+    }
+  }
+}
+
 export const removeGetBookDispatch = () => {
   return {
     type: actionType.REMOVE_GET_BOOK,
