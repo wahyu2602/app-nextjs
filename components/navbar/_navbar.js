@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="bg-gray-800 py-3">
       <div className="container mx-auto px-4 flex items-center">
         <div className="text-white text-3xl font-bold">
-          Belajar NextJS
+          Note Books
         </div>
         {/* <div className="text-white ml-auto">
           <ul className="hidden lg:flex xl:flex 2xl:flex justify-items-end">
